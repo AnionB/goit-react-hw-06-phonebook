@@ -1,9 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { decrement } from 'components/Redux/Redux';
+import { decrement, getContacts, getFilter } from 'components/Redux/Redux';
 
 export default function ContactList() {
-  const contacts = useSelector(state => state.contacts.items);
-  const filter = useSelector(state => state.contacts.filter);
+  const contacts = useSelector(getContacts);
+  const filter = useSelector(getFilter);
   const dispatch = useDispatch();
 
   const filteredContactList = () =>

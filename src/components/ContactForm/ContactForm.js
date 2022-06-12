@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
 import { useSelector, useDispatch } from 'react-redux';
-import { increment } from 'components/Redux/Redux';
+import { increment, getContacts } from 'components/Redux/Redux';
 
 export default function ContactForm() {
   const [number, setNumber] = useState('');
   const [name, setName] = useState('');
 
-  const contactsArray = useSelector(state => state.contacts.items);
+  const contactsArray = useSelector(getContacts);
   const dispatch = useDispatch();
 
   function addContact(contact) {

@@ -34,3 +34,6 @@ export default configureStore({
     contacts: contactsReducer,
   },
 });
+
+export const getContacts = state => state.contacts.items;
+export const getFilter = state => state.contacts.filter;
