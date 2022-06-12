@@ -1,13 +1,10 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { decrement, getContacts, getFilter } from 'components/Redux/Redux';
+import { useContacts } from 'redux/contactsSlice';
 
 export default function ContactList() {
-  const contacts = useSelector(getContacts);
-  const filter = useSelector(getFilter);
-  const dispatch = useDispatch();
+  const { contactsArray, filter, delCont } = useContacts();
 
   const filteredContactList = () =>
-    contacts.filter(contact =>
+    contactsArray.filter(contact =>
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
 
@@ -16,7 +13,7 @@ export default function ContactList() {
       {filteredContactList().map(({ id, name, number }) => (
         <li key={id}>
           {name} : {number}
-          <button type="button" onClick={() => dispatch(decrement(id))}>
+          <button type="button" onClick={() => delCont(id)}>
             Delete
           </button>
         </li>

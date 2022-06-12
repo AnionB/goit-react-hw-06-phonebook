@@ -1,14 +1,12 @@
-import { useDispatch } from 'react-redux';
-import { filterChange } from 'components/Redux/Redux';
+import { useContacts } from 'redux/contactsSlice';
 
 export default function Filter() {
-  const dispatch = useDispatch();
-
+  const { filtrChange } = useContacts();
   return (
     <>
       <p>Find contact by name</p>
       <input
-        onChange={e => dispatch(filterChange(e.target.value))}
+        onChange={e => filtrChange(e.target.value)}
         type="text"
         name="filter"
       />

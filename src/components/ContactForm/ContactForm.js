@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
-import { useSelector, useDispatch } from 'react-redux';
-import { increment, getContacts } from 'components/Redux/Redux';
+import { useContacts } from 'redux/contactsSlice';
 
 export default function ContactForm() {
   const [number, setNumber] = useState('');
   const [name, setName] = useState('');
-
-  const contactsArray = useSelector(getContacts);
-  const dispatch = useDispatch();
+  const { contactsArray, addCont } = useContacts();
 
   function addContact(contact) {
     if (
@@ -19,13 +16,7 @@ export default function ContactForm() {
       alert(contact.name + ' is already in contact');
       return;
     }
-    dispatch(
-      increment({
-        id: nanoid(),
-        name,
-        number,
-      })
-    );
+    addCont(contact);
   }
 
   const handleChange = e => {
